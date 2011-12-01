@@ -46,9 +46,34 @@ public slots:
 private:
     bool connected;
     bool ok;
-    int messagenumber;
     RtMidiIn *midi_in;
+    RtMidiOut *midi_out;
     QString getNote(unsigned int midinote);
 };
+
+/*
+class MIDI_Out : public QThread
+{
+    Q_OBJECT
+public:
+    explicit MIDI_Out(QObject *parent = 0);
+
+    bool connect(QString connectName);
+    void run();
+    void stop();
+    void loop();
+
+signals:
+    void send_message(QString message);
+
+public slots:
+
+private:
+    bool connected;
+    bool ok;
+    RtMidiOut *midi_out;
+    QString getNote(unsigned int midinote);
+};
+*/
 
 #endif // MIDI_H

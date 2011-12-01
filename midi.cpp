@@ -4,8 +4,8 @@
 MIDI::MIDI(QObject *parent) : QThread(parent) {
     connected = false;
     ok = false;
-    messagenumber = 0;
     midi_in = NULL;
+    midi_out = NULL;
 }
 
 bool MIDI::connect(QString connectName) {
@@ -17,11 +17,25 @@ bool MIDI::connect(QString connectName) {
         emit send_message(QString("Error Loading: %1").arg(err.getMessage().c_str()));
         ok = false;
     }
+
+    try {
+        midi_out = new RtMidiOut(connectName.toStdString());
+    } catch (RtError &err) {
+        emit send_message(QString("Error Loading: %1").arg(err.getMessage().c_str()));
+        ok = false;
+    }
+
     if(ok) {
-        emit send_message(QString("%1 ports found:").arg(midi_in->getPortCount()));
+        emit send_message(QString("%1 input ports found:").arg(midi_in->getPortCount()));
 
         for(unsigned int i=0;i<midi_in->getPortCount(); i++) {
             emit send_message(QString("%1").arg(midi_in->getPortName(i).c_str()));
+        }
+
+        emit send_message(QString("\n%1 output ports found:").arg(midi_out->getPortCount()));
+
+        for(unsigned int i=0;i<midi_out->getPortCount(); i++) {
+            emit send_message(QString("%1").arg(midi_out->getPortName(i).c_str()));
         }
     }
 
@@ -35,6 +49,7 @@ void MIDI::run() {
     if(!connected) {   // If we are not yet connected...
         if(ok) {        // And midi_in has been successfully created...
             midi_in->openVirtualPort("Input");
+            midi_out->openVirtualPort("Output");
             emit send_message("Connected.");
             connected = true;
 
@@ -47,6 +62,7 @@ void MIDI::run() {
 
 void MIDI::stop() {
     delete midi_in;
+    delete midi_out;
     connected = false;
     emit send_message("Disconnected.");
 }
@@ -73,6 +89,8 @@ void MIDI::loop() {
                     }
                     break;
             }
+
+            midi_out->sendMessage(&message);
         }
     }
 }
@@ -227,3 +245,43 @@ QString MIDI::getNote(unsigned int midinote) {
 
     return note;
 }
+
+/*
+MIDI_Out::MIDI_Out(QObject *parent) : QThread(parent) {
+    connected = false;
+    ok = false;
+    midi_out = NULL;
+}
+
+bool MIDI_Out::connect(QString connectName) {
+    ok = true;  // Assume this is going to work.  If it doesn't work, it'll get caught, and
+                // ok will be changed right back to false.
+    try {
+        midi_out = new RtMidiOut(connectName.toStdString());
+    } catch (RtError &err) {
+        emit send_message(QString("Error Loading: %1").arg(err.getMessage().c_str()));
+        ok = false;
+    }
+    if(ok) {
+        emit send_message(QString("%1 ports found:").arg(midi_out->getPortCount()));
+
+        for(unsigned int i=0;i<midi_out->getPortCount(); i++) {
+            emit send_message(QString("%1").arg(midi_out->getPortName(i).c_str()));
+        }
+    }
+
+    return ok;
+}
+
+void MIDI_Out::run() {
+
+}
+
+void MIDI_Out::stop() {
+
+}
+
+void MIDI_Out::loop() {
+
+}
+*/

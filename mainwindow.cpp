@@ -13,6 +13,8 @@ MainWindow::~MainWindow(){
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
+    Q_UNUSED(event);
+
     // Will need to add the MIDI termination necessities here. //
     midi->stop();
     sleep(1);   // give time for the other thread to finish up.
