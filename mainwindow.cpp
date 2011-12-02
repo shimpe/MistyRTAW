@@ -38,6 +38,11 @@ void MainWindow::onButtonClick() {
     }
 }
 
+void MainWindow::onViewChordAnalyzer() {
+    ChordAnalyzer *ca = new ChordAnalyzer(this);
+    ca->show();
+}
+
 
 void MainWindow::updatelog(QString message) {
     ui->msgarea->append(message);

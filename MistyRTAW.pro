@@ -28,16 +28,22 @@ TEMPLATE = app
 SOURCES += main.cpp \
     midi.cpp \
     mainwindow.cpp \
-    RtMidi.cpp
+    RtMidi.cpp \
+    chordanalyzer.cpp
 
 HEADERS  += \
     mainwindow.h \
     midi.h \
     RtError.h \
-    RtMidi.h
+    RtMidi.h \
+    chordanalyzer.h
 
 FORMS    += \
-    mainwindow.ui
+    mainwindow.ui \
+    chordanalyzer.ui
+
+
+
 
 
 

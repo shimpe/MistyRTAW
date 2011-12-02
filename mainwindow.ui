@@ -6,58 +6,176 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>726</width>
+    <height>520</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Misty RTAW</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLineEdit" name="connection">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>10</y>
-      <width>191</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>41</width>
+      <x>11</x>
+      <y>1</y>
+      <width>133</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Name:</string>
+     <string>Select Accompaniment:</string>
+    </property>
+   </widget>
+   <widget class="QListView" name="listView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>331</width>
+      <height>192</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>4</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>11</x>
+      <y>221</y>
+      <width>82</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Select Synths:</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>20</y>
+      <width>331</width>
+      <height>192</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="baseSize">
+     <size>
+      <width>4</width>
+      <height>0</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>0</y>
+      <width>139</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Select MIDI Input Device:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="connection">
+    <property name="geometry">
+     <rect>
+      <x>574</x>
+      <y>450</y>
+      <width>78</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+      <horstretch>1</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>Save Log</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>331</width>
+      <height>199</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>4</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <column>
+     <property name="text">
+      <string>Instrument</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Synth</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTextEdit" name="msgarea">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>240</y>
+      <width>331</width>
+      <height>192</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>220</y>
+      <width>24</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Log:</string>
     </property>
    </widget>
    <widget class="QPushButton" name="button">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>10</y>
-      <width>91</width>
+      <x>453</x>
+      <y>450</y>
+      <width>73</width>
       <height>22</height>
      </rect>
     </property>
     <property name="text">
      <string>Connect</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="msgarea">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>381</width>
-      <height>211</height>
-     </rect>
     </property>
    </widget>
   </widget>
@@ -66,7 +184,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>726</width>
      <height>19</height>
     </rect>
    </property>
@@ -78,10 +196,22 @@
    </widget>
    <widget class="QMenu" name="menu_About">
     <property name="title">
-     <string>&amp;About</string>
+     <string>&amp;Help</string>
     </property>
+    <addaction name="action_Contents"/>
+    <addaction name="separator"/>
+    <addaction name="action_About"/>
+   </widget>
+   <widget class="QMenu" name="menu_View">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="action_Chord_Analyzer"/>
+    <addaction name="action_Midi_Data"/>
+    <addaction name="actionController_Settings"/>
    </widget>
    <addaction name="menu_File"/>
+   <addaction name="menu_View"/>
    <addaction name="menu_About"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -96,6 +226,31 @@
   <action name="actionE_xit">
    <property name="text">
     <string>E&amp;xit</string>
+   </property>
+  </action>
+  <action name="action_Contents">
+   <property name="text">
+    <string>&amp;Contents</string>
+   </property>
+  </action>
+  <action name="action_About">
+   <property name="text">
+    <string>&amp;About</string>
+   </property>
+  </action>
+  <action name="action_Chord_Analyzer">
+   <property name="text">
+    <string>&amp;Chord Analyzer</string>
+   </property>
+  </action>
+  <action name="action_Midi_Data">
+   <property name="text">
+    <string>&amp;Midi Data</string>
+   </property>
+  </action>
+  <action name="actionController_Settings">
+   <property name="text">
+    <string>Controller &amp;Settings</string>
    </property>
   </action>
  </widget>
@@ -125,8 +280,8 @@
    <slot>onButtonClick()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>325</x>
-     <y>47</y>
+     <x>525</x>
+     <y>498</y>
     </hint>
     <hint type="destinationlabel">
      <x>199</x>
@@ -134,9 +289,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>action_Chord_Analyzer</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onViewChordAnalyzer()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>362</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>exit()</slot>
   <slot>onButtonClick()</slot>
+  <slot>onViewChordAnalyzer()</slot>
  </slots>
 </ui>

@@ -5,6 +5,7 @@
 
 #include <string>
 #include "midi.h"
+#include "chordanalyzer.h"
 
 namespace Ui {
     class MainWindow;
@@ -21,6 +22,7 @@ public:
 public slots:
     void closeEvent(QCloseEvent *event);
     void onButtonClick();
+    void onViewChordAnalyzer();
     void updatelog(QString message);
 
 private:
