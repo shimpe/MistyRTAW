@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Chord Analyzer</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="chord">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -35,27 +35,201 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>140</y>
-     <width>621</width>
-     <height>51</height>
+     <x>0</x>
+     <y>120</y>
+     <width>651</width>
+     <height>80</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <family>Comic Sans MS</family>
-     <pointsize>18</pointsize>
-    </font>
+   <property name="title">
+    <string>Notes</string>
    </property>
-   <property name="text">
-    <string>C    E    G    Bb</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>631</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="note0">
+       <property name="font">
+        <font>
+         <family>Comic Sans MS</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>C</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="note1">
+       <property name="font">
+        <font>
+         <family>Comic Sans MS</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>E</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="note2">
+       <property name="font">
+        <font>
+         <family>Comic Sans MS</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>G</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="note3">
+       <property name="font">
+        <font>
+         <family>Comic Sans MS</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>A#/Bb</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="note4">
+       <property name="font">
+        <font>
+         <family>Comic Sans MS</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="note5">
+       <property name="font">
+        <font>
+         <family>Comic Sans MS</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="note6">
+       <property name="font">
+        <font>
+         <family>Comic Sans MS</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="note7">
+       <property name="font">
+        <font>
+         <family>Comic Sans MS</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="note8">
+       <property name="font">
+        <font>
+         <family>Comic Sans MS</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="note9">
+       <property name="font">
+        <font>
+         <family>Comic Sans MS</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <zorder>note0</zorder>
+   <zorder>note1</zorder>
+   <zorder>note2</zorder>
+   <zorder>note3</zorder>
+   <zorder>note4</zorder>
+   <zorder>note5</zorder>
+   <zorder>note6</zorder>
+   <zorder>note7</zorder>
+   <zorder>note8</zorder>
+   <zorder>note9</zorder>
+   <zorder>chord</zorder>
   </widget>
  </widget>
  <resources/>
