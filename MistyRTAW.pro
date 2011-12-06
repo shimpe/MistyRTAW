@@ -29,18 +29,22 @@ SOURCES += main.cpp \
     midi.cpp \
     mainwindow.cpp \
     RtMidi.cpp \
-    chordanalyzer.cpp
+    chordanalyzer.cpp \
+    midifile.cpp
 
 HEADERS  += \
     mainwindow.h \
     midi.h \
     RtError.h \
     RtMidi.h \
-    chordanalyzer.h
+    chordanalyzer.h \
+    midifile.h
 
 FORMS    += \
     mainwindow.ui \
     chordanalyzer.ui
+
+
 
 
 

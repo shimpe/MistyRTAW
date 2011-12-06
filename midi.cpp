@@ -1,3 +1,6 @@
+// Class MIDI is used to transmit and receive data from external MIDI hardware and/or other MIDI software programs.
+// It does not directly deal with MIDI files, but interfaces w/ the MidiFile class to do this.
+
 #include "midi.h"
 
 
@@ -26,16 +29,12 @@ bool MIDI::connect(QString connectName) {
     }
 
     if(ok) {
-        emit send_message(QString("%1 input ports found:").arg(midi_in->getPortCount()));
-
         for(unsigned int i=0;i<midi_in->getPortCount(); i++) {
-            emit send_message(QString("%1").arg(midi_in->getPortName(i).c_str()));
+            emit add_input(QString("%1").arg(midi_in->getPortName(i).c_str()));
         }
 
-        emit send_message(QString("\n%1 output ports found:").arg(midi_out->getPortCount()));
-
         for(unsigned int i=0;i<midi_out->getPortCount(); i++) {
-            emit send_message(QString("%1").arg(midi_out->getPortName(i).c_str()));
+            emit add_output(QString("%1").arg(midi_out->getPortName(i).c_str()));
         }
     }
 

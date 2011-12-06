@@ -5,7 +5,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->setupUi(this);
     midi = new MIDI(this);
     connect(midi, SIGNAL(send_message(QString)), this, SLOT(updatelog(QString)));
+    connect(midi, SIGNAL(add_input(QString)), this, SLOT(addinput(QString)));
+    connect(midi, SIGNAL(add_output(QString)), this, SLOT(addoutput(QString)));
+    midi->connect("Test");
+    midi->start();
     ui->actionE_xit->setShortcut(QKeySequence::Quit);
+
+    QComboBox combo(ui->synthList);
+    combo.addItems(outputs);
+
+
 }
 
 MainWindow::~MainWindow(){
@@ -46,4 +55,14 @@ void MainWindow::onViewChordAnalyzer() {
 
 void MainWindow::updatelog(QString message) {
     ui->msgarea->append(message);
+}
+
+
+void MainWindow::addinput(QString input) {
+    ui->intputList->addItem(input);
+}
+
+
+void MainWindow::addoutput(QString output) {
+    outputs << output;
 }
