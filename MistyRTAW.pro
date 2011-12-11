@@ -30,7 +30,8 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     RtMidi.cpp \
     chordanalyzer.cpp \
-    midifile.cpp
+    midifile.cpp \
+    synthselector.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -38,11 +39,26 @@ HEADERS  += \
     RtError.h \
     RtMidi.h \
     chordanalyzer.h \
-    midifile.h
+    midifile.h \
+    synthselector.h
 
 FORMS    += \
     mainwindow.ui \
     chordanalyzer.ui
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

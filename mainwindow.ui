@@ -158,7 +158,7 @@
      </size>
     </property>
    </widget>
-   <widget class="QTableView" name="synthList">
+   <widget class="QTableWidget" name="synthList">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -167,12 +167,19 @@
       <height>192</height>
      </rect>
     </property>
-    <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
-    </property>
     <attribute name="horizontalHeaderStretchLastSection">
      <bool>true</bool>
     </attribute>
+    <column>
+     <property name="text">
+      <string>Instrument</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Synth</string>
+     </property>
+    </column>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

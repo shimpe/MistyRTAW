@@ -2,14 +2,15 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QTableWidgetItem>
+#include <QTableView>
 #include <QStringList>
 #include <QComboBox>
 
-
 #include <string>
+
 #include "midi.h"
 #include "chordanalyzer.h"
+#include "synthselector.h"
 
 namespace Ui {
     class MainWindow;
@@ -37,6 +38,5 @@ private:
     QStringList outputs;
 };
 
-//void dataReceived(double time, std::vector<unsigned char> *message, void *userdata);
 
 #endif // MAINWINDOW_H

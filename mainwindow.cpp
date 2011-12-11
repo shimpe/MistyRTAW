@@ -7,14 +7,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(midi, SIGNAL(send_message(QString)), this, SLOT(updatelog(QString)));
     connect(midi, SIGNAL(add_input(QString)), this, SLOT(addinput(QString)));
     connect(midi, SIGNAL(add_output(QString)), this, SLOT(addoutput(QString)));
-    midi->connect("Test");
+    midi->connect("Misty");
     midi->start();
     ui->actionE_xit->setShortcut(QKeySequence::Quit);
 
-    QComboBox combo(ui->synthList);
-    combo.addItems(outputs);
+    ui->synthList->setRowCount(1);
+    ui->synthList->setItem(0, 0, new QTableWidgetItem("Piano", QTableWidgetItem::Type));
+    SynthSelector *combo = new SynthSelector(ui->synthList, outputs);
 
-
+    ui->synthList->setCellWidget(0, 1, combo);
 }
 
 MainWindow::~MainWindow(){
