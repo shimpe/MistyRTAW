@@ -1,10 +1,13 @@
 #ifndef MIDIFILE_H
 #define MIDIFILE_H
 
+#include <QObject>
+#include <QDir>
 #include <QFile>
 #include <QDataStream>
 #include <QString>
 #include <QList>
+#include "midi.h"
 
 enum errors {
     MidiFile_OK = 0,
@@ -23,14 +26,14 @@ enum chunkIDs {
 };
 
 enum events {
-    note_on     = 0x8,
-    note_off    = 0x9,
-    note_at     = 0xA,  //Aftertouch
-    controller  = 0xB,
-    prog_change = 0xC,  // Program Change
-    chan_at     = 0xD,
-    pitch_bend  = 0xE,
-    meta        = 0xF
+    event_note_off    = 0x80,
+    event_note_on     = 0x90,
+    event_note_at     = 0xA0,  // Note Aftertouch
+    event_controller  = 0xB0,
+    event_prog_change = 0xC0,  // Program Change
+    event_chan_at     = 0xD0,  // Channel Aftertouch
+    event_pitch_bend  = 0xE0,
+    event_meta        = 0xF0
 };
 
 enum metatypes {
@@ -69,16 +72,25 @@ class Track {
         QList<Event *> event;
 };
 
-class MidiFile {
+class MidiFile : public QObject {
+    Q_OBJECT
 
-public:
-    MidiFile();
-    int LoadFile(QString filename);     // Returns Error code
-    QString getError(int error);        // Returns Error message based on Error code
-
-private:
-    QList<Track *> track;
-
+    public:
+        MidiFile();
+        int LoadFile(QString filename);     // Returns Error code
+        QString getError(int error);        // Returns Error message based on Error code
+        QString getEventName(quint8 eventnum);
+        QString getNoteName(quint8 notenum);
+        QString getMetaName(quint8 metanum);
+        QString getSysExName(quint8 sysexnum);
+        QString getTrackName(int tracknum);
+        QString getTrackEvent(int tracknum, int eventnum);
+        int     numTracks();
+        int     numEvents(int tracknum);
+    signals:
+        void sendmessage(QString message);
+    private:
+        QList<Track *> track;
 };
 
 #endif // MIDIFILE_H

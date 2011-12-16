@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Misty RTAW</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-image:url(:/image/misty.jpg)</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -308,10 +311,27 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>accompanimentList</sender>
+   <signal>itemSelectionChanged()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onAccompanimentSelection()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>175</x>
+     <y>142</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>362</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>exit()</slot>
   <slot>onButtonClick()</slot>
   <slot>onViewChordAnalyzer()</slot>
+  <slot>onAccompanimentSelection()</slot>
  </slots>
 </ui>

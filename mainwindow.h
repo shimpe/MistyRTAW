@@ -5,10 +5,12 @@
 #include <QTableView>
 #include <QStringList>
 #include <QComboBox>
+#include <QDir>
 
 #include <string>
 
 #include "midi.h"
+#include "midifile.h"
 #include "chordanalyzer.h"
 #include "synthselector.h"
 
@@ -31,6 +33,7 @@ public slots:
     void updatelog(QString message);
     void addinput(QString input);
     void addoutput(QString output);
+    void onAccompanimentSelection();
 
 private:
     Ui::MainWindow *ui;

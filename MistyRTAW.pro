@@ -46,6 +46,10 @@ FORMS    += \
     mainwindow.ui \
     chordanalyzer.ui
 
+RESOURCES += \
+    MistyRTAW.qrc
+
+
 
 
 
