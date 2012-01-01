@@ -1,100 +1,72 @@
-// Class MIDI is used to transmit and receive data from external MIDI hardware and/or other MIDI software programs.
-// It does not directly deal with MIDI files, but interfaces w/ the MidiFile class to do this.
+#include "mistymidi.h"
+#include <QMessageBox>
 
-#include "midi.h"
+MistyMidi::MistyMidi() : QObject() {
+    mstream = new MidiStream();
 
+    input_ports = mstream->getInputPorts();
+    output_ports = mstream->getOutputPorts();
 
-MIDI::MIDI(QObject *parent) : QThread(parent) {
-    connected = false;
-    ok = false;
-    midi_in = NULL;
-    midi_out = NULL;
+    misty_input_port = mstream->createPort("Input", inputtype, jack);
+    connect(mstream, SIGNAL(send_message(QString)), this, SLOT(receive_message(QString)));
 }
 
-bool MIDI::connect(QString connectName) {
-    ok = true;  // Assume this is going to work.  If it doesn't work, it'll get caught, and
-                // ok will be changed right back to false.
-    try {
-        midi_in = new RtMidiIn(connectName.toStdString());
-    } catch (RtError &err) {
-        emit send_message(QString("Error Loading: %1").arg(err.getMessage().c_str()));
-        ok = false;
-    }
-
-    try {
-        midi_out = new RtMidiOut(connectName.toStdString());
-    } catch (RtError &err) {
-        emit send_message(QString("Error Loading: %1").arg(err.getMessage().c_str()));
-        ok = false;
-    }
-
-    if(ok) {
-        for(unsigned int i=0;i<midi_in->getPortCount(); i++) {
-            emit add_input(QString("%1").arg(midi_in->getPortName(i).c_str()));
-        }
-
-        for(unsigned int i=0;i<midi_out->getPortCount(); i++) {
-            emit add_output(QString("%1").arg(midi_out->getPortName(i).c_str()));
-        }
-    }
-
-    return ok;
+int MistyMidi::getNumInputPorts() {
+    return input_ports.size();
 }
 
-void MIDI::run() {
-    bool ok = true;  // If any errors occur, this will be changed to false.
-    std::string errmsg;
-
-    if(!connected) {   // If we are not yet connected...
-        if(ok) {        // And midi_in has been successfully created...
-            midi_in->openVirtualPort("Input");
-            midi_out->openVirtualPort("Output");
-            emit send_message("Connected.");
-            connected = true;
-
-            loop();  // Start the loop
-        } else emit send_message("Connect failed.");  // If not connected but midi_in not successfully created
-    } else {
-        emit send_message("Cannot Connect: Already connected");  // If already connected...
-    }
+QString MistyMidi::getInputPortName(int port) {
+    return input_ports.at(port).name;
 }
 
-void MIDI::stop() {
-    delete midi_in;
-    delete midi_out;
-    connected = false;
-    emit send_message("Disconnected.");
+int MistyMidi::getNumOutputPorts() {
+    return output_ports.size();
 }
 
-void MIDI::loop() {
-    double time;
-    std::vector<unsigned char> message;
+QString MistyMidi::getOutputPortName(int port) {
+    return output_ports.at(port).name;
+}
 
-    while(connected) {
-        time = midi_in->getMessage(&message);
+void MistyMidi::receive_message(QString message) {
+    emit send_message(message);
+}
 
-        if(message.size() > 0) {
-            switch(message.at(0)) {
-                case event_note_on:   // Note On
-                    emit send_message(QString("%1: Note On, %2.  Velocity %3").arg(time).arg(getNote(message.at(1))).arg(message.at(2)));
-                    break;
-                case event_note_off:   // Note Off, ignore velocity
-                    emit send_message(QString("%1: Note Off, %2").arg(time).arg(getNote(message.at(1))));
-                    break;
-                default:
-                    emit send_message(QString("%1: Other Command").arg(time));
-                    for(unsigned int i=0; i<message.size(); i++) {
-                        emit send_message(QString("%1").arg(message.at(i)));
-                    }
-                    break;
-            }
-        }
+void MistyMidi::input_changed(QString port) {
+    // Get Selected Input Port
+    int i = 0;
+    Port p;
+    Port temp;
+
+    QMessageBox qmb;
+
+    // Disconnect current port (if it's connected)
+    p = mstream->getCurrentlyConnectedPort(misty_input_port);
+    if(p.port != NULL)
+        mstream->disconnectPort(misty_input_port, p);
+
+
+    // Connect to new port
+    while (input_ports.at(i).name != port) { i++; }
+    if(input_ports.at(i).name == port)
+        p = input_ports.at(i);
+    else {          // Since we're dealing with a preloaded set of identified outputs, we should never get here.
+//        QMessageBox qmb;
+        qmb.setText(QString("Could not find %1").arg(port));
+        qmb.exec();
     }
+
+    int err = mstream->connectPort(misty_input_port, p);
+    qmb.setText(QString("Error #%1: %2 %3").arg(err, 0, 16).arg(misty_input_port.name).arg(p.name));
+    qmb.exec();
+}
+
+void MistyMidi::output_changed(QString port) {
+
 }
 
 // This converts the numerical value of the note to a readable string.  Due to the number
 // of notes in MIDI, it's pretty long.
-QString MIDI::getNote(unsigned int midinote) {
+QString MistyMidi::getNote(notes midinote) {
     QString note;
 
     switch(midinote) {
@@ -241,15 +213,4 @@ QString MIDI::getNote(unsigned int midinote) {
     }
 
     return note;
-}
-
-void MIDI::outputMidiEvent(Event *event) {
-    std::vector<unsigned char> message;
-
-    message.push_back(event->event);
-    for(int i = 0; i < event->params.size(); i++) {
-        message.push_back(event->params.at(i));
-    }
-
-    //midi_out->sendMessage(message);
 }

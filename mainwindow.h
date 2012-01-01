@@ -10,6 +10,7 @@
 #include <string>
 
 #include "midi.h"
+#include "mistymidi.h"
 #include "midifile.h"
 #include "chordanalyzer.h"
 #include "synthselector.h"
@@ -37,8 +38,9 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
-    MIDI *midi;
+    MistyMidi *midi;
     QStringList outputs;
+    void loadPortNames();
 };
 
 

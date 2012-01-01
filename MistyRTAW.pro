@@ -8,6 +8,10 @@ QT       += core gui
 
 TARGET = MistyRTAW
 
+CONFIG += link_pkgconfig
+
+PKGCONFIG = jack
+
 win32 {
     DEFINES += __WINDOWS_MM__
     LIBS += -lwinmm
@@ -19,7 +23,9 @@ macx {
 }
 
 unix {
-    DEFINES += __LINUX_ALSASEQ__
+    DEFINES += __LINUX_ALSASEQ__ \
+               ALSA \
+               JACK
     LIBS += -lasound
 }
 
@@ -31,7 +37,11 @@ SOURCES += main.cpp \
     RtMidi.cpp \
     chordanalyzer.cpp \
     midifile.cpp \
-    synthselector.cpp
+    synthselector.cpp \
+    mididata.cpp \
+    midistream.cpp \
+    jackmidistream.cpp \
+    mistymidi.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -40,7 +50,11 @@ HEADERS  += \
     RtMidi.h \
     chordanalyzer.h \
     midifile.h \
-    synthselector.h
+    synthselector.h \
+    mididata.h \
+    midistream.h \
+    jackmidistream.h \
+    mistymidi.h
 
 FORMS    += \
     mainwindow.ui \

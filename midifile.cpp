@@ -1,20 +1,6 @@
 // Class MidiFile represents reading data from a .mid file and does not have any function with transmitting MIDI data to other programs/MIDI hardware.
 
-
 #include "midifile.h"
-
-Event::Event() {
-    deltatime = 0;
-    event     = 0;
-    if(!params.empty())
-        params.clear();
-}
-
-
-Track::Track() {
-    if(!event.empty())
-        event.clear();
-}
 
 
 MidiFile::MidiFile() : QObject() {
