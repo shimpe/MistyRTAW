@@ -13,7 +13,9 @@ public:
     QString getInputPortName(int port);
     int getNumOutputPorts();
     QString getOutputPortName(int port);
-    
+    Port* getMistyInput();
+    int   numMistyOutputs();
+    QList<Port *> getMistyOutputs();
 signals:
     void send_message(QString message);
 public slots:
@@ -23,11 +25,11 @@ public slots:
 private:
     QString getNote(notes note);
     MidiStream *mstream;
-    QList<Port> input_ports;
-    QList<Port> output_ports;
+    QList<Port *> input_ports;
+    QList<Port *> output_ports;
 
-    Port misty_input_port;          // Misty is configured to only have one input port
-    QList<Port> misty_output_port;  // Misty is configured to have multiple output ports
+    Port *misty_input_port;          // Misty is configured to only have one input port
+    QList<Port *> misty_output_port;  // Misty is configured to have multiple output ports
 };
 
 #endif // MISTYMIDI_H

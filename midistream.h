@@ -33,17 +33,17 @@ class MidiStream : public QObject {
     Q_OBJECT
     public:
         MidiStream();
-        QList<Port> getInputPorts();
-        QList<Port> getOutputPorts();
+        QList<Port *> getInputPorts();
+        QList<Port *> getOutputPorts();
         /*int openPort();
         int closePort();
         int numPorts();
         int getPort(); */
-        Port createPort(QString port_name, PutType iop, ConnectionType type);
-        int  destroyPort(Port p);
-        int connectPort(Port ip, Port op);
-        int disconnectPort(Port ip, Port op);
-        Port getCurrentlyConnectedPort(Port p);
+        Port* createPort(QString port_name, PutType iop, ConnectionType type);
+        int  destroyPort(Port *p);
+        int connectPort(Port *ip, Port *op);
+        int disconnectPort(Port *ip, Port *op);
+        Port* getCurrentlyConnectedPort(Port *p);
     signals:
         void send_message(QString message);
         void send_event(Event *e);
@@ -55,8 +55,8 @@ class MidiStream : public QObject {
         void portsChanged();
 
     private:
-        QList<Port> input_ports;
-        QList<Port> output_ports;
+        QList<Port *> input_ports;
+        QList<Port *> output_ports;
         #ifdef JACK
             JackMidiStream *jackstream;
         #endif

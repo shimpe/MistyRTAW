@@ -8,6 +8,8 @@ MistyMidi::MistyMidi() : QObject() {
     output_ports = mstream->getOutputPorts();
 
     misty_input_port = mstream->createPort("Input", inputtype, jack);
+    misty_output_port.append(mstream->createPort("Piano", outputtype, jack));
+
     connect(mstream, SIGNAL(send_message(QString)), this, SLOT(receive_message(QString)));
 }
 
@@ -16,7 +18,7 @@ int MistyMidi::getNumInputPorts() {
 }
 
 QString MistyMidi::getInputPortName(int port) {
-    return input_ports.at(port).name;
+    return input_ports.at(port)->name;
 }
 
 int MistyMidi::getNumOutputPorts() {
@@ -24,7 +26,19 @@ int MistyMidi::getNumOutputPorts() {
 }
 
 QString MistyMidi::getOutputPortName(int port) {
-    return output_ports.at(port).name;
+    return output_ports.at(port)->name;
+}
+
+Port* MistyMidi::getMistyInput() {
+    return misty_input_port;
+}
+
+int   MistyMidi::numMistyOutputs() {
+    return misty_output_port.size();
+}
+
+QList<Port *> MistyMidi::getMistyOutputs() {
+    return misty_output_port;
 }
 
 void MistyMidi::receive_message(QString message) {
@@ -34,30 +48,25 @@ void MistyMidi::receive_message(QString message) {
 void MistyMidi::input_changed(QString port) {
     // Get Selected Input Port
     int i = 0;
-    Port p;
-    Port temp;
-
-    QMessageBox qmb;
+    Port *p;
 
     // Disconnect current port (if it's connected)
     p = mstream->getCurrentlyConnectedPort(misty_input_port);
-    if(p.port != NULL)
+    if(p->port != NULL)
         mstream->disconnectPort(misty_input_port, p);
 
 
     // Connect to new port
-    while (input_ports.at(i).name != port) { i++; }
-    if(input_ports.at(i).name == port)
+    while (input_ports.at(i)->name != port) { i++; }
+    if(input_ports.at(i)->name == port)
         p = input_ports.at(i);
     else {          // Since we're dealing with a preloaded set of identified outputs, we should never get here.
-//        QMessageBox qmb;
+        QMessageBox qmb;
         qmb.setText(QString("Could not find %1").arg(port));
         qmb.exec();
     }
 
     int err = mstream->connectPort(misty_input_port, p);
-    qmb.setText(QString("Error #%1: %2 %3").arg(err, 0, 16).arg(misty_input_port.name).arg(p.name));
-    qmb.exec();
 }
 
 void MistyMidi::output_changed(QString port) {

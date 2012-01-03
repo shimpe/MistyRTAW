@@ -3,14 +3,6 @@
 #include <QMessageBox>
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    /*midi = new MIDI(this);
-
-    connect(midi, SIGNAL(send_message(QString)), this, SLOT(updatelog(QString)));
-    connect(midi, SIGNAL(add_input(QString)), this, SLOT(addinput(QString)));
-    connect(midi, SIGNAL(add_output(QString)), this, SLOT(addoutput(QString)));
-
-    midi->connect("Misty");
-    midi->start(); */
 
     midi = new MistyMidi();
     loadPortNames();
@@ -63,11 +55,9 @@ void MainWindow::loadPortNames() {
 
 void MainWindow::closeEvent(QCloseEvent *event) {
     Q_UNUSED(event);
-
-    // Will need to add the MIDI termination necessities here. //
-    //midi->stop();
-    sleep(1);   // give time for the other thread to finish up.
-    delete midi;
+    testmidi->stop();
+    sleep(10);   // Wait for thread to finish
+    delete testmidi;
     close();
 }
 
@@ -114,22 +104,19 @@ void MainWindow::onAccompanimentSelection() {
     MidiFile *midifile = new MidiFile();
     connect(midifile, SIGNAL(sendmessage(QString)), this, SLOT(updatelog(QString)));
     int errornum = midifile->LoadFile(ui->accompanimentList->currentItem()->text());
-    qmb.setText(midifile->getError(errornum));
-    qmb.exec();
 
-    qmb.setText(QString("Number of tracks: %1").arg(midifile->numTracks()));
-    qmb.exec();
-    while (tracks < midifile->numTracks()) {
-        qmb.setText(QString("Track #%1: %2").arg(tracks+1).arg(midifile->getTrackName(tracks)));
-        qmb.exec();
+    /* while (tracks < midifile->numTracks()) {
         ui->msgarea->append(midifile->getTrackName(tracks));
 
         while(events < midifile->numEvents(tracks)) {
-            qmb.setText(QString("  Event: %1").arg(midifile->getTrackEvent(tracks, events)));
-            qmb.exec();
-            ui->msgarea->append(midifile->getTrackEvent(tracks, events));
+            ui->msgarea->append(midifile->getTrackEventText(tracks, events));
             events++;
         }
         tracks++;
-    }
+    } */
+    if(errornum==MidiFile_OK) {
+        testmidi = new TestMidiOutput(midi->getMistyOutputs(), midifile);
+        connect(testmidi, SIGNAL(send_message(QString)), this, SLOT(updatelog(QString)));
+        testmidi->start();
+    } else ui->msgarea->append(QString("Unable to load Midi file: %1").arg(midifile->getError(errornum)));
 }

@@ -23,7 +23,8 @@ class MidiFile : public QObject {
         QString getMetaName(quint8 metanum);
         QString getSysExName(quint8 sysexnum);
         QString getTrackName(int tracknum);
-        QString getTrackEvent(int tracknum, int eventnum);
+        Event*  getTrackEvent(int tracknum, int eventnum);
+        QString getTrackEventText(int tracknum, int eventnum);
         int     numTracks();
         int     numEvents(int tracknum);
     signals:
