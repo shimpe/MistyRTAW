@@ -72,45 +72,45 @@ int MidiFile::LoadFile(QString filename) {
                     newevent->params.append(eventseg);
                     in >> eventseg;                             // velocity
                     newevent->params.append(eventseg);
-                    emit sendmessage(QString("%1: %2 on Channel %3; Note: %4  Velocity %5").arg(newevent->deltatime).arg(getEventName(newevent->event)).arg(newevent->event & 0x0F).arg(getNoteName(newevent->params.at(0))).arg(newevent->params.at(1)));
+                    //emit sendmessage(QString("%1: %2 on Channel %3; Note: %4  Velocity %5").arg(newevent->deltatime).arg(getEventName(newevent->event)).arg(newevent->event & 0x0F).arg(getNoteName(newevent->params.at(0))).arg(newevent->params.at(1)));
                     break;
                 case event_note_off:
                     in >> eventseg;                             // note
                     newevent->params.append(eventseg);
                     in >> eventseg;                             // velocity
                     newevent->params.append(eventseg);
-                    emit sendmessage(QString("%1: %2 on Channel %3; Note: %4  Velocity %5").arg(newevent->deltatime).arg(getEventName(newevent->event)).arg(newevent->event & 0x0F).arg(getNoteName(newevent->params.at(0))).arg(newevent->params.at(1)));
+                    //emit sendmessage(QString("%1: %2 on Channel %3; Note: %4  Velocity %5").arg(newevent->deltatime).arg(getEventName(newevent->event)).arg(newevent->event & 0x0F).arg(getNoteName(newevent->params.at(0))).arg(newevent->params.at(1)));
                     break;
                 case event_note_at:
                     in >> eventseg;                             // note
                     newevent->params.append(eventseg);
                     in >> eventseg;                             // amount
                     newevent->params.append(eventseg);
-                    emit sendmessage(QString("%1: %2 on Channel %3; Note: %4  Velocity %5").arg(newevent->deltatime).arg(getEventName(newevent->event)).arg(newevent->event & 0x0F).arg(getNoteName(newevent->params.at(0))).arg(newevent->params.at(1)));
+                    //emit sendmessage(QString("%1: %2 on Channel %3; Note: %4  Velocity %5").arg(newevent->deltatime).arg(getEventName(newevent->event)).arg(newevent->event & 0x0F).arg(getNoteName(newevent->params.at(0))).arg(newevent->params.at(1)));
                     break;
                 case event_controller:
                     in >> eventseg;                             // controller type
                     newevent->params.append(eventseg);
                     in >> eventseg;                             // value
                     newevent->params.append(eventseg);
-                    emit sendmessage(QString("%1: %2 on Channel %3; Type: %4  Value: %5").arg(newevent->deltatime).arg(getEventName(newevent->event)).arg(newevent->event & 0x0F).arg(newevent->params.at(0)).arg(newevent->params.at(1)));
+                    //emit sendmessage(QString("%1: %2 on Channel %3; Type: %4  Value: %5").arg(newevent->deltatime).arg(getEventName(newevent->event)).arg(newevent->event & 0x0F).arg(newevent->params.at(0)).arg(newevent->params.at(1)));
                     break;
                 case event_prog_change:
                     in >> eventseg;                             // New Program #
                     newevent->params.append(eventseg);
-                    emit sendmessage(QString("%1: %2 to #%3 on Channel %4").arg(newevent->deltatime).arg(getEventName(newevent->event)).arg(newevent->params.at(0)).arg(newevent->event & 0x0F));
+                    //emit sendmessage(QString("%1: %2 to #%3 on Channel %4").arg(newevent->deltatime).arg(getEventName(newevent->event)).arg(newevent->params.at(0)).arg(newevent->event & 0x0F));
                     break;
                 case event_chan_at:
                     in >> eventseg;                             // amount
                     newevent->params.append(eventseg);
-                    emit sendmessage(QString("%1: %2 on Channel %3: %4").arg(newevent->deltatime).arg(getEventName(newevent->event)).arg(newevent->event & 0x0F).arg(newevent->params.at(0)));
+                    //emit sendmessage(QString("%1: %2 on Channel %3: %4").arg(newevent->deltatime).arg(getEventName(newevent->event)).arg(newevent->event & 0x0F).arg(newevent->params.at(0)));
                     break;
                 case event_pitch_bend:
                     in >> eventseg;                             // Value (LSB)
                     newevent->params.append(eventseg);
                     in >> eventseg;                             // Value (MSB)
                     newevent->params.append(eventseg);
-                    emit sendmessage(QString("%1: %2 on Channel %3: %4").arg(newevent->deltatime).arg(getEventName(newevent->event)).arg(newevent->event & 0x0F).arg((newevent->params.at(1)<<7)+(newevent->params.at(0)<<7)));
+                    //emit sendmessage(QString("%1: %2 on Channel %3: %4").arg(newevent->deltatime).arg(getEventName(newevent->event)).arg(newevent->event & 0x0F).arg((newevent->params.at(1)<<7)+(newevent->params.at(0)<<7)));
                     break;
                 case event_meta:                                      // This section handles both meta & sysEx messages, as both events start w/ 0xF
                     switch(newevent->event & 0x0F) {            // The second set of 4 bits identifies meta vs. sysex, which will define how we deal with the parameters.
@@ -121,22 +121,22 @@ int MidiFile::LoadFile(QString filename) {
                             in >> dtseg;             // Length - typically we use eventseg, but we need eventseg to read in during the for loop,
                                                                  // and dtseg's not being used at the moment.
                             newevent->params.append(dtseg);
-                            emit sendmessage(QString("META %1, Length: %2").arg(getMetaName(newevent->params.at(0))).arg(dtseg));
+                            //emit sendmessage(QString("META %1, Length: %2").arg(getMetaName(newevent->params.at(0))).arg(dtseg));
 
                             if(newevent->params.at(0) != meta_endoftrack) {
-                                emit sendmessage("Parameters:");
+                                //emit sendmessage("Parameters:");
                                 for(int i=0; i< dtseg; i++) {
                                     in >> eventseg;
 
                                     newevent->params.append(eventseg);
-                                    emit sendmessage(QString("  %1").arg(eventseg));
+                                    //emit sendmessage(QString("  %1").arg(eventseg));
                                 }
                             } else { endoftrack = true; }
                             break;
 
                         case 0x0:               // sysEx
                         case 0x7:
-                            emit sendmessage("SysEx message: Currently Ignored.");
+                            //emit sendmessage("SysEx message: Currently Ignored.");
                             in >> eventseg;                     // Meta Event Type
                             newevent->params.append(eventseg);
 
@@ -161,7 +161,9 @@ int MidiFile::LoadFile(QString filename) {
                     return MidiFile_InvalidEvent;
                     break;
             }
+            newtrack->event.append(newevent);
         }
+        track.append(newtrack);
     }
     file.close();
     return result;
@@ -466,8 +468,12 @@ QString MidiFile::getTrackName(int tracknum) {
     return result;
 }
 
-QString MidiFile::getTrackEvent(int tracknum, int eventnum) {
-    int i = 0;  QString result;
+Event* MidiFile::getTrackEvent(int tracknum, int eventnum) {
+    return track.at(tracknum)->event.at(eventnum);
+}
+
+QString MidiFile::getTrackEventText(int tracknum, int eventnum) {
+    int i = 0; QString result;
 
     Event *search_event = track.at(tracknum)->event.at(eventnum);
 
@@ -480,9 +486,9 @@ QString MidiFile::getTrackEvent(int tracknum, int eventnum) {
 }
 
 int MidiFile::numTracks() {
-    return track.count();
+    return track.size();
 }
 
 int MidiFile::numEvents(int tracknum) {
-    return track.at(tracknum)->event.count();
+    return track.at(tracknum)->event.size();
 }

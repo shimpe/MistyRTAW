@@ -98,10 +98,15 @@ enum PutType {
     outputtype
 };
 
-struct Port {
-        const void *port;
-        QString name;
-        ConnectionType type;
+class Port {
+public:
+    Port();
+    const void *port;
+    QString name;
+    PutType iop;
+    ConnectionType type;
+    void *in_buffer;
+    QList<Event *> out_buffer;  // Used to transfer events to output
 };
 
 #endif // MIDIDATA_H

@@ -14,3 +14,8 @@ Track::Track() {
     if(!event.empty())
         event.clear();
 }
+
+
+Port::Port() {
+
+}

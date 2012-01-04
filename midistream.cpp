@@ -1,5 +1,4 @@
 #include "midistream.h"
-#include <QMessageBox>
 
 // Because connections are not made between MidiStream & the application yet, the application
 // developer will need to manually load everything initially.  Once the signals and slots
@@ -20,15 +19,15 @@ MidiStream::MidiStream() : QObject() {
     #ifdef JACK
         jackstream = new JackMidiStream();
         connect(jackstream, SIGNAL(send_event(Event*)), this, SLOT(incomingEvent(Event*)));
-        connect(this, SIGNAL(send_event(Event*)), jackstream, SLOT(onJackOutgoingEvent(Event*)));
         input_ports.append(jackstream->loadInputPorts());
         output_ports.append(jackstream->loadOutputPorts());
     #endif
 }
 
 
-Port MidiStream::createPort(QString port_name, PutType iop, ConnectionType type) {
-    Port p;
+Port* MidiStream::createPort(QString port_name, PutType iop, ConnectionType type) {
+    Port *p = new Port();
+
     #ifdef JACK
         if(type == jack) {
            p = jackstream->createPort(port_name, iop);
@@ -38,40 +37,40 @@ Port MidiStream::createPort(QString port_name, PutType iop, ConnectionType type)
     return p;
 }
 
-int MidiStream::destroyPort(Port p) {
+int MidiStream::destroyPort(Port *p) {
     return 0;
 }
 
-QList<Port> MidiStream::getInputPorts() {
+QList<Port *> MidiStream::getInputPorts() {
     return input_ports;
 }
 
 
-QList<Port> MidiStream::getOutputPorts() {
+QList<Port *> MidiStream::getOutputPorts() {
     return output_ports;
 }
 
 
-int MidiStream::connectPort(Port ip, Port op) {
+int MidiStream::connectPort(Port *ip, Port *op) {
     return jackstream->connectPort(ip, op);
 
 }
 
 
-int MidiStream::disconnectPort(Port ip, Port op) {
+int MidiStream::disconnectPort(Port *ip, Port *op) {
     return jackstream->disconnectPort(ip, op);
 }
 
-Port MidiStream::getCurrentlyConnectedPort(Port p) {
-    Port port;
+Port* MidiStream::getCurrentlyConnectedPort(Port *p) {
+    Port *port = new Port();
 
     // Set up default in case we don't find it.
-    port.port = NULL;
-    port.name = QString();
-    port.type = jack;
+    port->port = NULL;
+    port->name = QString();
+    port->type = jack;
 
     #ifdef JACK
-    if(p.type == jack) {
+    if(p->type == jack) {
         port = jackstream->getCurrentlyConnectedPort(p);
     }
     #endif  // JACK

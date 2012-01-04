@@ -13,19 +13,20 @@
     #include "mididata.h"
 
     #include <QObject>
+    #include <QList>
 
     class JackMidiStream : public QObject {
         Q_OBJECT
     public:
         explicit JackMidiStream();
         bool ok();
-        QList<Port> loadInputPorts();
-        QList<Port> loadOutputPorts();
-        Port createPort(QString port_name, PutType iop);
+        QList<Port *> loadInputPorts();
+        QList<Port *> loadOutputPorts();
+        Port* createPort(QString port_name, PutType iop);
         int  destroyPort(QString port_id);
-        int connectPort(Port ip, Port op);
-        int disconnectPort(Port ip, Port op);
-        Port getCurrentlyConnectedPort(Port p);
+        int connectPort(Port *ip, Port *op);
+        int disconnectPort(Port *ip, Port *op);
+        Port* getCurrentlyConnectedPort(Port *p);
         // Callback Functions
         static int  onReceiveEvent(jack_nframes_t nframes, void *arg);
         static void onJackShutdown(void *arg);
@@ -35,13 +36,15 @@
         void send_message(QString message);
 
     public slots:
-        void onJackIncomingEvent(void *buffer, void *arg);
-        void onJackOutgoingEvent(Event *e);
+        void onJackIncomingEvent(Port *p);
+        void onJackOutgoingEvent(jack_nframes_t nframes, Port *p);
 
     protected:
         jack_client_t *jack_client;
-        QList<Port> inputs;
-        QList<Port> outputs;
+        QList<Port *> internal_input_port;
+        QList<Port *> internal_output_port;
+        QList<Port *> external_input_port;
+        QList<Port *> external_output_port;
 
 
         // Boolean operators identify whether or not all JACK functions were performed

@@ -13,6 +13,7 @@
 #include "midifile.h"
 #include "chordanalyzer.h"
 #include "synthselector.h"
+#include "testmidioutput.h"
 
 namespace Ui {
     class MainWindow;
@@ -40,6 +41,7 @@ private:
     MistyMidi *midi;
     QStringList outputs;
     void loadPortNames();
+    TestMidiOutput *testmidi;
 };
 
 
