@@ -7,7 +7,6 @@
 #include <QDataStream>
 #include <QString>
 #include <QList>
-#include "midi.h"
 #include "mididata.h"
 
 

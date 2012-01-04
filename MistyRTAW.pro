@@ -32,9 +32,7 @@ unix {
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    midi.cpp \
     mainwindow.cpp \
-    RtMidi.cpp \
     chordanalyzer.cpp \
     midifile.cpp \
     synthselector.cpp \
@@ -45,9 +43,6 @@ SOURCES += main.cpp \
 
 HEADERS  += \
     mainwindow.h \
-    midi.h \
-    RtError.h \
-    RtMidi.h \
     chordanalyzer.h \
     midifile.h \
     synthselector.h \
@@ -62,31 +57,3 @@ FORMS    += \
 
 RESOURCES += \
     MistyRTAW.qrc
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -9,7 +9,6 @@
 
 #include <string>
 
-#include "midi.h"
 #include "mistymidi.h"
 #include "midifile.h"
 #include "chordanalyzer.h"
