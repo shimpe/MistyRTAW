@@ -304,7 +304,7 @@ QString MidiNoteConverter::midiNoteToTheoryNote(const notes &Note) const
 TESTSUITE : MidiNoteConverter
 TYPE   : COLUMNBASED
 LINK : [ midinoteconverter.cpp ]
-INCLUDE: [ midinoteconverter.h, mididata.h, <QMap>, <QList> ]
+INCLUDE: [ midinoteconverter.h, mididata.h, <QHash>, <QList> ]
 INCLUDEDIR : [ /usr/include/qt4,/usr/include/qt4/QtCore ]
 BINLIB : [QtCore]
 STUBS  :

@@ -2,7 +2,7 @@
 #define MIDINOTECONVERTER_H
 
 #include "mididata.h"
-#include <QMap>
+#include <QHash>
 #include <QString>
 
 class MidiNoteConverter
@@ -14,8 +14,8 @@ public:
     QString midiNoteToTheoryNote(const notes &Note) const;
 
 private:
-    QMap<notes, QString> m_MidiNoteToString;
-    QMap<notes, QString> m_MidiNoteToTheoryNote;
+    QHash<notes, QString> m_MidiNoteToString;
+    QHash<notes, QString> m_MidiNoteToTheoryNote;
 };
 
 #endif // MIDINOTECONVERTER_H
