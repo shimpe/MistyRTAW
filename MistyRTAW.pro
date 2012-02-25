@@ -40,7 +40,8 @@ SOURCES += main.cpp \
     midistream.cpp \
     jackmidistream.cpp \
     mistymidi.cpp \
-    testmidioutput.cpp
+    testmidioutput.cpp \
+    midinoteconverter.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -51,7 +52,8 @@ HEADERS  += \
     midistream.h \
     jackmidistream.h \
     mistymidi.h \
-    testmidioutput.h
+    testmidioutput.h \
+    midinoteconverter.h
 
 FORMS    += \
     mainwindow.ui \

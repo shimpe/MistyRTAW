@@ -3,6 +3,7 @@
 
 #include "mididata.h"
 #include "midistream.h"
+#include "midinoteconverter.h"
 
 class MistyMidi : public QObject
 {
@@ -30,6 +31,8 @@ private:
 
     Port *misty_input_port;          // Misty is configured to only have one input port
     QList<Port *> misty_output_port;  // Misty is configured to have multiple output ports
+
+    MidiNoteConverter midi_note_converter;
 };
 
 #endif // MISTYMIDI_H
