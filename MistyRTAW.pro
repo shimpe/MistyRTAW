@@ -42,7 +42,7 @@ SOURCES += main.cpp \
     mistymidi.cpp \
     testmidioutput.cpp \
     midinoteconverter.cpp \
-    interval.cpp
+    interval.cpp \
 
 HEADERS  += \
     mainwindow.h \
@@ -55,7 +55,7 @@ HEADERS  += \
     mistymidi.h \
     testmidioutput.h \
     midinoteconverter.h \
-    interval.h
+    interval.h \
 
 FORMS    += \
     mainwindow.ui \

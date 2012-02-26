@@ -74,7 +74,7 @@ unsigned int Interval::GetNoOfSemitones() const
         return Difference;
 }
 
-Interval Interval::TransposeTo(const QString &NewTheoryNote)
+Interval Interval::TransposeTo(const QString &NewTheoryNote) const
 {
     int NewNoteIndex = m_DiatonicScaleNotes.indexOf(QString(m_TheoryNote2[0])) +
             Interval(m_TheoryNote1, NewTheoryNote).GetNoteNameDistance();
