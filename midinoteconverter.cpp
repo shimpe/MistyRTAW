@@ -142,7 +142,8 @@ MidiNoteConverter::MidiNoteConverter()
     m_MidiNoteToString[Fs9] = "F#9";
     m_MidiNoteToString[G9] = "G9";
 
-    // initialize lookup table
+    // initialize lookup table -> could be implemented using formula too,
+    // but keep it readable for now
     m_MidiNoteToTheoryNote[CN1]  = "c";
     m_MidiNoteToTheoryNote[CsN1] = "c#";
     m_MidiNoteToTheoryNote[DN1]  = "d";
