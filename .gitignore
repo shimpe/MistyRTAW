@@ -13,3 +13,7 @@
 
 #The Qt Creator user files
 *.pro.user
+
+#Unit test output
+testoutput
+
