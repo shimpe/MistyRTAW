@@ -82,7 +82,7 @@ Interval Interval::TransposeTo(const QString &NewTheoryNote) const
         NewNoteIndex -= 7;
     QString SecondNote = m_DiatonicScaleNotes[NewNoteIndex];
     int ModifierKey = Interval(m_TheoryNote1, m_TheoryNote2).GetNoOfSemitones()
-            - Interval(m_TheoryNote1, m_TheoryNote2).GetNoOfSemitones();
+            - Interval(NewTheoryNote, SecondNote).GetNoOfSemitones();
     return Interval(NewTheoryNote, SecondNote + m_Modifiers[ModifierKey]);
 }
 
