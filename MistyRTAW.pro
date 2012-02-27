@@ -43,6 +43,7 @@ SOURCES += main.cpp \
     testmidioutput.cpp \
     midinoteconverter.cpp \
     interval.cpp \
+    chord.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -56,6 +57,7 @@ HEADERS  += \
     testmidioutput.h \
     midinoteconverter.h \
     interval.h \
+    chord.h
 
 FORMS    += \
     mainwindow.ui \
