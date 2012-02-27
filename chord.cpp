@@ -19,7 +19,7 @@ QList<QString> Chord::TransposeTo(const QString &NewNote) const
     Result << NewNote;
     for (QList<QString>::const_iterator it = m_TheoryNotes.begin()+1; it != m_TheoryNotes.end(); ++it)
     {
-        Result << (Interval(m_TheoryNotes[0], *it).TransposeTo(NewNote).GetSecondNote());
+        Result << (Interval(m_TheoryNotes[0], *it).TransposeTo(NewNote)[1]);
     }
     return Result;
 }

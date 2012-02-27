@@ -16,7 +16,7 @@ public:
     unsigned int GetNoteNameDistance() const;
     unsigned int GetNoOfSemitones() const;
 
-    Interval TransposeTo(const QString &NewNote) const;
+    QList<QString> TransposeTo(const QString &NewNote) const;
     QList<int> ToIntervalPattern() const;
 
 private:

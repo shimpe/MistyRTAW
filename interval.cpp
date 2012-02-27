@@ -74,7 +74,7 @@ unsigned int Interval::GetNoOfSemitones() const
         return Difference;
 }
 
-Interval Interval::TransposeTo(const QString &NewTheoryNote) const
+QList<QString> Interval::TransposeTo(const QString &NewTheoryNote) const
 {
     int NewNoteIndex = m_DiatonicScaleNotes.indexOf(QString(m_TheoryNote2[0])) +
             Interval(m_TheoryNote1, NewTheoryNote).GetNoteNameDistance();
@@ -83,7 +83,7 @@ Interval Interval::TransposeTo(const QString &NewTheoryNote) const
     QString SecondNote = m_DiatonicScaleNotes[NewNoteIndex];
     int ModifierKey = Interval(m_TheoryNote1, m_TheoryNote2).GetNoOfSemitones()
             - Interval(NewTheoryNote, SecondNote).GetNoOfSemitones();
-    return Interval(NewTheoryNote, SecondNote + m_Modifiers[ModifierKey]);
+    return QList<QString>() << NewTheoryNote << (SecondNote + m_Modifiers[ModifierKey]);
 }
 
 QList<int> Interval::ToIntervalPattern() const
@@ -123,6 +123,12 @@ CODE   : [
    [ 'inverted',   ~, 'a,g#,6,11'  ],
    [ 'doublesharp',~, 'ax,bbb,1,10'],
    [ 'doubleshrp2',~, 'bbb,ax,6,2' ],
-  ]
+  ],
+  [
+   [ 'TransposeTo', ~, 'EXPECT_EQ(I("$1","$2").TransposeTo("$3"), (QList<QString>() << "$4" << "$5"))'],
+   [ 'notranspose', ~, 'a,c,a,a,c'                                                                    ],
+   [ 'semitone_up', ~, 'g,b,g#,g#,b#'                                                                 ],
+   [ 'semi_down',   ~, 'd,a,bb,bb,f'                                                                  ]
+  ],
 ]
 */
