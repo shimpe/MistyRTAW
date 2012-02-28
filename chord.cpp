@@ -105,7 +105,7 @@ QList<QList<QString> > Chord::CreateAllInversions() const
 }
 
 
-Chord Chord::Simplify() const
+QList<QString> Chord::Simplify() const
 {
     // the simplified chord is the chord with all notes rearranged so that they are spaced as closely as possible
     // e.g. ['a','e','c'] simplified => ['a','c','e']
@@ -136,7 +136,7 @@ Chord Chord::Simplify() const
     }
     QList<QList<int> > SortedPatList = PatList;
     qSort(SortedPatList.begin(), SortedPatList.end(), PatternSort);
-    return Chord(MinimumEnergyChordList[PatternToKey(SortedPatList[0])]);
+    return MinimumEnergyChordList[PatternToKey(SortedPatList[0])];
 }
 
 bool Chord::MusicSort(const QString &note1, const QString &note2)
@@ -168,7 +168,7 @@ bool Chord::PatternSort(const QList<int> &list1, const QList<int> &list2)
     return false;
 }
 
-QString Chord::PatternToKey(const QList<int> &Pattern) const
+QString Chord::PatternToKey(const QList<int> &Pattern)
 {
     QString Key = "";
     for (QList<int>::const_iterator it = Pattern.begin(); it != Pattern.end(); ++it)

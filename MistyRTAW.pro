@@ -43,7 +43,9 @@ SOURCES += main.cpp \
     testmidioutput.cpp \
     midinoteconverter.cpp \
     interval.cpp \
-    chord.cpp
+    chord.cpp \
+    chordrecognizer.cpp \
+    chorddescriptor.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -57,7 +59,9 @@ HEADERS  += \
     testmidioutput.h \
     midinoteconverter.h \
     interval.h \
-    chord.h
+    chord.h \
+    chordrecognizer.h \
+    chorddescriptor.h
 
 FORMS    += \
     mainwindow.ui \
