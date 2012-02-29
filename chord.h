@@ -14,9 +14,9 @@ public:
     bool operator==(const Chord &Other) const;
     static QString PatternToKey(const QList<int> &Pattern);
     QList<QList<QString> > CreateAllInversions() const;
+    QList<QString> WithoutDuplicateNotes() const;
 
 private:
-    QList<QString> WithoutDuplicateNotes() const;
     QList<QString> SortedRelativeToFirstNote() const;
 
     static bool MusicSort(const QString &note1, const QString &note2);

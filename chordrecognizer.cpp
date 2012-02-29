@@ -13,12 +13,12 @@ ChordRecognizer::ChordRecognizer()
 
     // let's make this thing recognize intervals ("2-note chords")
     // recognize minor second = inverse of major 7th
-    //QList<QString> MinorSecond = QList<QString>() << "c" << "c#";
-    //RegisterNewChordType(MinorSecond,ChordDescriptor("c","minorsecond","c"));
+    QList<QString> MinorSecond = QList<QString>() << "c" << "c#";
+    RegisterNewChordType(MinorSecond,ChordDescriptor("c","minorsecond","c"));
 
     // recognize major second = inverse of minor seventh
-    //QList<QString> MajorSecond = QList<QString>() << "c" << "d";
-    //RegisterNewChordType(MajorSecond,ChordDescriptor("c","majorsecond","c"));
+    QList<QString> MajorSecond = QList<QString>() << "c" << "d";
+    RegisterNewChordType(MajorSecond,ChordDescriptor("c","majorsecond","c"));
 
     // recognize minor third
     QList<QString> MinorThird = QList<QString>() << "c" << "eb";
@@ -29,8 +29,8 @@ ChordRecognizer::ChordRecognizer()
     RegisterNewChordType(MajorThird,ChordDescriptor("c","majorthird","c"));
 
     // recognize perfect fourth == inverse of perfect fifth
-    // QList<QString> PerfectFourth = QList<QString>() << "c" << "f";
-    // RegisterNewChordType(PerfectFourth,ChordDescriptor("c","majorfourth","c"));
+    QList<QString> PerfectFourth = QList<QString>() << "c" << "f";
+    RegisterNewChordType(PerfectFourth,ChordDescriptor("c","majorfourth","c"));
 
     // recognize augmented fourth (also known as tritone, or "diabolicus in musica" *shiver*)
     QList<QString> AugmentedFourth = QList<QString>() << "c" << "f#";
@@ -41,12 +41,12 @@ ChordRecognizer::ChordRecognizer()
     RegisterNewChordType(PowerChord,ChordDescriptor("c","perfectfifth","c"));
 
     // minor sixth == inverse of major third
-    // QList<QString> MinorSixthInt = QList<QString>() << "c" << "ab";
-    // RegisterNewChordType(MinorSixthInt,ChordDescriptor("c","minorsixth","c"));
+    QList<QString> MinorSixthInt = QList<QString>() << "c" << "ab";
+    RegisterNewChordType(MinorSixthInt,ChordDescriptor("c","minorsixth","c"));
 
     // major sixth == inverse of minor third
-    // QList<QString> MajorSixth = QList<QString>() << "c" << "a";
-    // RegisterNewChordType(MajorSixth,ChordDescriptor("c","majorsixth","c"));
+    QList<QString> MajorSixth = QList<QString>() << "c" << "a";
+    RegisterNewChordType(MajorSixth,ChordDescriptor("c","majorsixth","c"));
 
     // minor seventh == inverse of major second
     QList<QString> MinorSeventh = QList<QString>() << "c" << "bb";
@@ -75,8 +75,8 @@ ChordRecognizer::ChordRecognizer()
     RegisterNewChordType(DiminishedTriad,ChordDescriptor("c","dim5","c"));
 
     // recognize all suspended second triads in all keys and inversions == inversion of sus4
-    // QList<QString> Sus2 = QList<QString>() << "c" << "d" << "g";
-    // RegisterNewChordType(Sus2,ChordDescriptor("c","sus2","c"));
+    QList<QString> Sus2 = QList<QString>() << "c" << "d" << "g";
+    RegisterNewChordType(Sus2,ChordDescriptor("c","sus2","c"));
 
     // recognize all suspended fourth triads in all keys and inversions
     QList<QString> Sus4 = QList<QString>() << "c" << "f" << "g";
@@ -103,20 +103,20 @@ ChordRecognizer::ChordRecognizer()
     RegisterNewChordType(Minor7omit5,ChordDescriptor("c","m7(omit5)","c"));
 
     // recognize all minor seventh omit3 chords == inverse of 7(omit3)
-    // QList<QString> Minor7omit3 = QList<QString>() << "c" << "g" << "bb";
-    // RegisterNewChordType(Minor7omit3,ChordDescriptor("c","m7(omit3)","c"));
+    QList<QString> Minor7omit3 = QList<QString>() << "c" << "g" << "bb";
+    RegisterNewChordType(Minor7omit3,ChordDescriptor("c","m7(omit3)","c"));
 
     // recognize all added fourth chords
     QList<QString> Add4 = QList<QString>() << "c" << "e" << "f" << "g";
     RegisterNewChordType(Add4,ChordDescriptor("c","add4","c"));
 
     // recognize all sixth chords == inverse of m7
-    // QList<QString> Sixth = QList<QString>() << "c" << "e" << "g" << "a";
-    // RegisterNewChordType(Sixth,ChordDescriptor("c","6","c"));
+    QList<QString> Sixth = QList<QString>() << "c" << "e" << "g" << "a";
+    RegisterNewChordType(Sixth,ChordDescriptor("c","6","c"));
 
     // recognize all minor sixth chords == inverse of m7(b5)
-    // QList<QString> MinorSixth = QList<QString>() << "c" << "eb" << "g" << "a";
-    // RegisterNewChordType(MinorSixth,ChordDescriptor("c","m6","c"));
+    QList<QString> MinorSixth = QList<QString>() << "c" << "eb" << "g" << "a";
+    RegisterNewChordType(MinorSixth,ChordDescriptor("c","m6","c"));
 
     // recognize all six/seven chords
     QList<QString> SixSeven = QList<QString>() << "c" << "e" << "g" << "a" << "bb";
@@ -203,8 +203,8 @@ ChordRecognizer::ChordRecognizer()
     RegisterNewChordType(SevenDimNine,ChordDescriptor("c","7(b9)","c"));
 
     // recognize all seventh aug11 chords == inversion of 7(b5)
-    // QList<QString> SevenAug11 = QList<QString>() << "c" << "e" << "f#" << "bb";
-    // RegisterNewChordType(SevenAug11,ChordDescriptor("c","7(#11)","c"));
+    QList<QString> SevenAug11 = QList<QString>() << "c" << "e" << "f#" << "bb";
+    RegisterNewChordType(SevenAug11,ChordDescriptor("c","7(#11)","c"));
 
     // recognize all major seventh added ninth chords
     QList<QString> MajSevenAddNine = QList<QString>() << "c" << "d" << "e" << "b";
@@ -215,8 +215,8 @@ ChordRecognizer::ChordRecognizer()
     RegisterNewChordType(MajSevenAdd13,ChordDescriptor("c","Maj7(13)","c"));
 
     // recognize all major seventh augm 11th chords == inversion of Maj7(b5)
-    // QList<QString> MajSevenAug11 = QList<QString>() << "c" << "e" << "f#" << "b";
-    // RegisterNewChordType(MajSevenAug11,ChordDescriptor("c","Maj7(#11)","c"));
+    QList<QString> MajSevenAug11 = QList<QString>() << "c" << "e" << "f#" << "b";
+    RegisterNewChordType(MajSevenAug11,ChordDescriptor("c","Maj7(#11)","c"));
 
     // recognize all minor seven added 9 chords
     QList<QString> MinSevenAdd9 = QList<QString>() << "c" << "d" << "eb" << "bb";
@@ -231,8 +231,8 @@ ChordRecognizer::ChordRecognizer()
     RegisterNewChordType(SevenAdd13,ChordDescriptor("c","7(13)","c"));
 
     // recognize all seven diminished 13 chords == inversion of 7(#5)
-    // QList<QString> SevenDim13 = QList<QString>() << "c" << "e" << "g#" << "bb";
-    // RegisterNewChordType(SevenDim13,ChordDescriptor("c","7(b13)","c"));
+    QList<QString> SevenDim13 = QList<QString>() << "c" << "e" << "g#" << "bb";
+    RegisterNewChordType(SevenDim13,ChordDescriptor("c","7(b13)","c"));
 
     // recognize all 6/9 chords
     QList<QString> SixSlashNine = QList<QString>() << "c" << "e" << "g" << "a" << "d";
@@ -255,8 +255,8 @@ ChordRecognizer::ChordRecognizer()
     RegisterNewChordType(NineAug5,ChordDescriptor("c","9(#5)","c"));
 
     // recognize 9 dim5 chords == inversion of 9(#5)
-    // QList<QString> NineDim5 = QList<QString>() << "c" << "e" << "gb" << "bb" << "d";
-    // RegisterNewChordType(NineDim5,ChordDescriptor("c","9(b5)","c"));
+    QList<QString> NineDim5 = QList<QString>() << "c" << "e" << "gb" << "bb" << "d";
+    RegisterNewChordType(NineDim5,ChordDescriptor("c","9(b5)","c"));
 
     // minor ninth dim5 chords
     QList<QString> MinorNineDim5 = QList<QString>() << "c" << "eb" << "gb" << "bb" << "d";
@@ -283,8 +283,8 @@ ChordRecognizer::ChordRecognizer()
     RegisterNewChordType(Minor11Dim5,ChordDescriptor("c","m11(b5)","c"));
 
     // min 11th aug5 chords == inversion of m11
-    //QList<QString> Minor11Aug5 = QList<QString>() << "c" << "eb" << "g#" << "bb" << "d" << "f";
-    //RegisterNewChordType(Minor11Aug5,ChordDescriptor("c","m11(#5)","c"));
+    QList<QString> Minor11Aug5 = QList<QString>() << "c" << "eb" << "g#" << "bb" << "d" << "f";
+    RegisterNewChordType(Minor11Aug5,ChordDescriptor("c","m11(#5)","c"));
 
     // 13th chords
     QList<QString> Thirteen = QList<QString>() << "c" << "e" << "g" << "bb" << "d" << "a";
@@ -297,16 +297,16 @@ ChordRecognizer::ChordRecognizer()
     RegisterNewChordType(Maj13,ChordDescriptor("c","Maj13","c"));
 
     // min 13 added 11 chord == inversion of 6/9 chord
-    // QList<QString> Maj13Add11 = QList<QString>() << "c" << "eb" << "g" << "bb" << "f";
-    // RegisterNewChordType(Maj13Add11,ChordDescriptor("c","m7(11)","c"));
+    QList<QString> Maj13Add11 = QList<QString>() << "c" << "eb" << "g" << "bb" << "f";
+    RegisterNewChordType(Maj13Add11,ChordDescriptor("c","m7(11)","c"));
 
     // minor 7th add13 == inversion of m6/7 chord
-    // QList<QString> Min7Add13 = QList<QString>() << "c" << "eb" << "g" << "a" << "bb";
-    // RegisterNewChordType(Min7Add13,ChordDescriptor("c","m7(13)","c"));
+    QList<QString> Min7Add13 = QList<QString>() << "c" << "eb" << "g" << "a" << "bb";
+    RegisterNewChordType(Min7Add13,ChordDescriptor("c","m7(13)","c"));
 
     // min 13th == inversion of 13 chord
-    // QList<QString> Min13 = QList<QString>() << "c" << "eb" << "g" << "bb" << "d" << "f" << "a";
-    // RegisterNewChordType(Min13,ChordDescriptor("c","m13","c"));
+    QList<QString> Min13 = QList<QString>() << "c" << "eb" << "g" << "bb" << "d" << "f" << "a";
+    RegisterNewChordType(Min13,ChordDescriptor("c","m13","c"));
 
     // minor 9/major 7
     QList<QString> Min9Maj7 = QList<QString>() << "c" << "eb" << "g" << "b" << "d";
@@ -329,12 +329,12 @@ ChordRecognizer::ChordRecognizer()
     RegisterNewChordType(SevenAug5Aug9,ChordDescriptor("c","7(#5)(#9)","c"));
 
     // seven aug5dim9 == inversion of m9(b5)
-    // QList<QString> SevenAug5Dim9 = QList<QString>() << "c" << "e" << "g#" << "bb" << "db";
-    // RegisterNewChordType(SevenAug5Dim9,ChordDescriptor("c","7(#5)(b9)","c"));
+    QList<QString> SevenAug5Dim9 = QList<QString>() << "c" << "e" << "g#" << "bb" << "db";
+    RegisterNewChordType(SevenAug5Dim9,ChordDescriptor("c","7(#5)(b9)","c"));
 
     // seven aug11 == inversion of 7(b5)
-    //QList<QString> SevenAug11_2 = QList<QString>() << "c" << "e" << "g" << "bb" << "f#";
-    //RegisterNewChordType(SevenAug11_2,ChordDescriptor("c","7(#11)","c"));
+    QList<QString> SevenAug11_2 = QList<QString>() << "c" << "e" << "g" << "bb" << "f#";
+    RegisterNewChordType(SevenAug11_2,ChordDescriptor("c","7(#11)","c"));
 
     // ninth aug11
     QList<QString> NineAug11 = QList<QString>() << "c" << "e" << "g" << "bb" << "d" << "f#";
@@ -364,6 +364,18 @@ ChordRecognizer::ChordRecognizer()
 
 ChordDescriptor ChordRecognizer::RecognizeChord(const QList<QString> &TheoryNotes, bool &ChordRecognized) const
 {
+    // first try to look up the non-simplified chord (to find specially named inversions)
+    QList<QString> NoteList = Chord(TheoryNotes).WithoutDuplicateNotes();
+    QList<int> IntervalPattern = Chord(NoteList).ToIntervalPattern();
+    QString Key = Chord::PatternToKey(IntervalPattern);
+    if (m_PatternToDescriptor.contains(Key))
+    {
+        ChordRecognized = true;
+        QPair<ChordDescriptor, unsigned int> Info = m_PatternToDescriptor[Key];
+        return ChordDescriptor(NoteList[Info.second], Info.first.GetModifier(), TheoryNotes[0]);
+    }
+
+    // if that failed, look for inversions of simplified chord
     QList<QString> SimplifiedChord = Chord(TheoryNotes).Simplify();
     QList<QList<QString> > Inversions = Chord(SimplifiedChord).CreateAllInversions();
     for (QList<QList<QString> >::const_iterator it = Inversions.begin(); it != Inversions.end(); ++it)
@@ -385,21 +397,36 @@ ChordDescriptor ChordRecognizer::RecognizeChord(const QList<QString> &TheoryNote
 void ChordRecognizer::RegisterNewChordType(const QList<QString> &TheoryNotes, const ChordDescriptor &ChordDescr)
 {
     QList<QString> SimplifiedChord = Chord(TheoryNotes).Simplify();
-    //if (SimplifiedChord != TheoryNotes)
-    //{
-    //    qDebug() << "Warning! Registering non-minimized chord " << ChordDescr.GetBaseName() << ","
-    //             << ChordDescr.GetModifier() << "," << ChordDescr.GetSlash();
-    //}
+    if (SimplifiedChord != TheoryNotes)
+    {
+        //qDebug() << "Warning! Registering non-minimized chord " << ChordDescr.GetBaseName() << ","
+        //         << ChordDescr.GetModifier() << "," << ChordDescr.GetSlash();
+        // first register the non-simplified chord as it may be a special name for an inversion
+        QList<int> IntervalPattern = Chord(Chord(TheoryNotes).WithoutDuplicateNotes()).ToIntervalPattern();
+        QString Key = Chord::PatternToKey(IntervalPattern);
+        unsigned int BaseNoteIndex = TheoryNotes.indexOf(QString(TheoryNotes[0]));
+        /*
+        if (m_PatternToDescriptor.contains(Key))
+            qDebug() << ChordDescr.GetBaseName() << "," << ChordDescr.GetModifier() << "," << ChordDescr.GetSlash() << " overwrites existing "
+                     << m_PatternToDescriptor[Key].first.GetBaseName() << "," << m_PatternToDescriptor[Key].first.GetModifier()
+                     << "," << m_PatternToDescriptor[Key].first.GetSlash();
+        */
+        if (!m_PatternToDescriptor.contains(Key))
+            m_PatternToDescriptor[Key] = QPair<ChordDescriptor, unsigned int>(ChordDescr, BaseNoteIndex);
+    }
 
     QList<int> IntervalPattern = Chord(SimplifiedChord).ToIntervalPattern();
     QString Key = Chord::PatternToKey(IntervalPattern);
     unsigned int BaseNoteIndex = SimplifiedChord.indexOf(QString(TheoryNotes[0]));
+    /*
     if (m_PatternToDescriptor.contains(Key))
-        qDebug() << ChordDescr.GetBaseName() << "," << ChordDescr.GetModifier() << "," << ChordDescr.GetSlash() << " overwrites existing "
+        qDebug() << ChordDescr.GetBaseName() << "," << ChordDescr.GetModifier() << "," << ChordDescr.GetSlash() << " was prevented from overwriting existing "
                  << m_PatternToDescriptor[Key].first.GetBaseName() << "," << m_PatternToDescriptor[Key].first.GetModifier()
                  << "," << m_PatternToDescriptor[Key].first.GetSlash();
 
-    m_PatternToDescriptor[Key] = QPair<ChordDescriptor, unsigned int>(ChordDescr, BaseNoteIndex);
+    */
+    if (!m_PatternToDescriptor.contains(Key))
+        m_PatternToDescriptor[Key] = QPair<ChordDescriptor, unsigned int>(ChordDescr, BaseNoteIndex);
 }
 
 
@@ -430,6 +457,8 @@ CODE   : [
    [ 'eb_minor',     '"gb",,"bb",,"eb"'   , '"eb","m","gb"'                , ~, '.'                                          ,'true'                ],
    [ 'dshrp_min_inv','"f#",,"a#",,"d#"'   , '"d#","m","f#"'                , ~, '.'                                          ,'true'                ],
    [ 'midi_minor',   '"c",,"d#",,"g"'     , '"c","m","c"'                  , ~, '.'                                          ,'true'                ],
+   [ 'minorsec',     '"c",,"c#"'          , '"c","minorsecond","c"'        , ~, '.'                                          ,'true'                ],
+   [ 'majorsev',     '"c#",,"c"'          , '"c#","majorseventh","c#"'     , ~, '.'                                          ,'true'                ],
   ],
 ]
 */
@@ -439,18 +468,32 @@ CODE   : [
 TESTSUITE : ChordRecognizer_speed
 TYPE   : RAW
 LINK : [ chordrecognizer.cpp, chorddescriptor.cpp, chord.cpp, interval.cpp ]
-INCLUDE: [ chordrecognizer.h, <QString>, <QHash>, <QList>, <QPair> ]
+INCLUDE: [ chordrecognizer.h, <QString>, <QHash>, <QList>, <QPair>, <QDebug>]
 INCLUDEDIR : [ /usr/include/qt4,/usr/include/qt4/QtCore ]
 BINLIB : [QtCore]
 STUBS  :
 CODE: |
     ChordRecognizer R;
     bool Found = false;
-    QList<QString> TestChord;
-    TestChord << "c" << "e" << "g" << "a" << "c";
-    for (int i=0; i < 100000; ++i)
+    QList<QString> TestChord = QList<QString>() << "e" << "g" << "c" << "a" << "c";
+    ChordDescriptor E1("c","6","e");
+    QList<QString> TestChord2= QList<QString>() << "e" << "g" << "c";
+    ChordDescriptor E2("c","","e");
+
+    for (int i=0; i < 10000; ++i)
     {
-        R.RecognizeChord(TestChord, Found);
+        ChordDescriptor D1 = R.RecognizeChord(TestChord, Found);
         EXPECT_EQ(Found,true);
+        EXPECT_EQ(D1, E1)
+            << "Expected:      "  << E1.GetBaseName().toStdString() << " " << E1.GetModifier().toStdString() << " " << E1.GetSlash().toStdString()
+            << " Found instead: " << D1.GetBaseName().toStdString() << " " << D1.GetModifier().toStdString() << " " << D1.GetSlash().toStdString();
+        ChordDescriptor D2 = R.RecognizeChord(TestChord2, Found);
+        EXPECT_EQ(Found,true);
+        EXPECT_EQ(D2, E2)
+            << "Expected:      "  << E2.GetBaseName().toStdString() << " " << E2.GetModifier().toStdString() << " " << E2.GetSlash().toStdString()
+            << " Found instead: " << D2.GetBaseName().toStdString() << " " << D2.GetModifier().toStdString() << " " << D2.GetSlash().toStdString();
+
     }
+    qDebug() << "Tested 10000 5-note chords and 10000 3-note chords";
+
 */
