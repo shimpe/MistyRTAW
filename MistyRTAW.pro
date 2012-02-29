@@ -45,7 +45,8 @@ SOURCES += main.cpp \
     interval.cpp \
     chord.cpp \
     chordrecognizer.cpp \
-    chorddescriptor.cpp
+    chorddescriptor.cpp \
+    chordmapper.cpp
 
 HEADERS  += \
     mainwindow.h \
@@ -61,7 +62,8 @@ HEADERS  += \
     interval.h \
     chord.h \
     chordrecognizer.h \
-    chorddescriptor.h
+    chorddescriptor.h \
+    chordmapper.h
 
 FORMS    += \
     mainwindow.ui \
