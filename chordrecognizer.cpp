@@ -12,13 +12,13 @@ ChordRecognizer::ChordRecognizer()
     // between (say) an augmented fourth and a dimished fifth
 
     // let's make this thing recognize intervals ("2-note chords")
-    // recognize minor second
-    QList<QString> MinorSecond = QList<QString>() << "c" << "c#";
-    RegisterNewChordType(MinorSecond,ChordDescriptor("c","minorsecond","c"));
+    // recognize minor second = inverse of major 7th
+    //QList<QString> MinorSecond = QList<QString>() << "c" << "c#";
+    //RegisterNewChordType(MinorSecond,ChordDescriptor("c","minorsecond","c"));
 
-    // recognize major second
-    QList<QString> MajorSecond = QList<QString>() << "c" << "d";
-    RegisterNewChordType(MajorSecond,ChordDescriptor("c","majorsecond","c"));
+    // recognize major second = inverse of minor seventh
+    //QList<QString> MajorSecond = QList<QString>() << "c" << "d";
+    //RegisterNewChordType(MajorSecond,ChordDescriptor("c","majorsecond","c"));
 
     // recognize minor third
     QList<QString> MinorThird = QList<QString>() << "c" << "eb";
@@ -49,12 +49,12 @@ ChordRecognizer::ChordRecognizer()
     // RegisterNewChordType(MajorSixth,ChordDescriptor("c","majorsixth","c"));
 
     // minor seventh == inverse of major second
-    // QList<QString> MinorSeventh = QList<QString>() << "c" << "bb";
-    // RegisterNewChordType(MinorSeventh,ChordDescriptor("c","minorseventh","c"));
+    QList<QString> MinorSeventh = QList<QString>() << "c" << "bb";
+    RegisterNewChordType(MinorSeventh,ChordDescriptor("c","minorseventh","c"));
 
     // major seventh == inverse of minor second
-    // QList<QString> MajorSeventh = QList<QString>() << "c" << "b";
-    // RegisterNewChordType(MajorSeventh,ChordDescriptor("c","majorseventh","c"));
+    QList<QString> MajorSeventh = QList<QString>() << "c" << "b";
+    RegisterNewChordType(MajorSeventh,ChordDescriptor("c","majorseventh","c"));
 
     // let's make this thing also recognize chords with three and more notes
 
