@@ -20,6 +20,8 @@
 #include "chord.h"
 #include "interval.h"
 
+// a chord mapper replaces exotic chords with simpler chords
+
 ChordMapper::ChordMapper()
 {
     m_Map["minorsecond"] = QPair<QString,QString>("c","");
@@ -115,6 +117,7 @@ ChordDescriptor ChordMapper::Lookup(const ChordDescriptor &ChordDescr) const
 {
     if (m_Map.contains(ChordDescr.GetModifier()))
     {
+        // transpose to get the notes right
         QPair<QString,QString> Mapped = m_Map[ChordDescr.GetModifier()];
         QString NewRootNote = Interval("c",Mapped.first).TransposeTo(ChordDescr.GetBaseName())[1];
         return ChordDescriptor(NewRootNote, Mapped.second, NewRootNote);

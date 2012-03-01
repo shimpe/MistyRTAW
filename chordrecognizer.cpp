@@ -19,11 +19,11 @@
 #include "chord.h"
 #include <QDebug>
 
+
+// a chordrecognizer takes a list of notes and comes up with a chord name
+
 ChordRecognizer::ChordRecognizer()
 {
-    // behold the power of teach by example ...
-    // each line teaches the system tens of new chords
-
     // note that since midi doesn't distinguish between
     // e.g gb and f# there's no point in maintaining a distinction
     // between (say) an augmented fourth and a dimished fifth

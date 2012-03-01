@@ -32,6 +32,7 @@ Chord::Chord(const QList<QString> &TheoryNotes, const QString &RootNote, unsigne
 
 QList<QString> Chord::TransposeTo(const QString &NewNote) const
 {
+    // example ['c','e','g','a'] transposed to e -> ['e','g#','b','c#']
     QList<QString> Result;
     Result << NewNote;
     for (QList<QString>::const_iterator it = m_TheoryNotes.begin()+1; it != m_TheoryNotes.end(); ++it)
@@ -109,6 +110,7 @@ QList<QString> Chord::SortedRelativeToFirstNote() const
 
 QList<QList<QString> > Chord::CreateAllInversions() const
 {
+    // example: ['c','e','g'] -> [ ['c','e',g'], ['e','g','c'], ['g','c','e'] ]
     QList<QList<QString> > Result;
     for (int Index=0; Index < m_TheoryNotes.size(); ++Index)
     {
@@ -158,6 +160,7 @@ QList<QString> Chord::Simplify() const
 
 bool Chord::MusicSort(const QString &note1, const QString &note2)
 {
+    // sort based on interval size (#semitones between the notes)
     int d1 = Interval(note1,note2).GetNoOfSemitones();
     int d2 = Interval(note2,note1).GetNoOfSemitones();
     return (d1 < d2);
@@ -187,6 +190,7 @@ bool Chord::PatternSort(const QList<int> &list1, const QList<int> &list2)
 
 QString Chord::PatternToKey(const QList<int> &Pattern)
 {
+    // convert interval pattern to QString
     QString Key = "";
     for (QList<int>::const_iterator it = Pattern.begin(); it != Pattern.end(); ++it)
     {

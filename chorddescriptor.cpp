@@ -17,6 +17,11 @@
 
 #include "chorddescriptor.h"
 
+// a chord descriptor describes a chord using
+// - a basename (e.g. 'c')
+// - a modifier (e.g. 'Maj7')
+// - a slash note indicating the inversion (e.g. 'b')
+
 ChordDescriptor::ChordDescriptor()
 : m_BaseName("PROGRAMMING ERROR")
 , m_Modifier("PROGRAMMING ERROR")
