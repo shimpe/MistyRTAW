@@ -40,7 +40,7 @@ QList<Port *> JackMidiStream::loadInputPorts() {
     jack_port = jack_get_ports(jack_client, NULL, JACK_DEFAULT_MIDI_TYPE, JackPortIsOutput);
 
     unsigned int i = 0;
-    while (jack_port[i] != NULL) {
+    while (jack_port && jack_port[i] != NULL) {
         p = new Port();
         p->port = jack_port_by_name(jack_client, jack_port[i]);
         p->name = QString(jack_port[i]);
@@ -64,7 +64,7 @@ QList<Port *> JackMidiStream::loadOutputPorts() {
     jack_port = jack_get_ports(jack_client, NULL, JACK_DEFAULT_MIDI_TYPE, JackPortIsInput);
 
     unsigned int i = 0;
-    while (jack_port[i] != NULL) {
+    while (jack_port && jack_port[i] != NULL) {
         p = new Port();
         p->port = jack_port_by_name(jack_client, jack_port[i]);
         p->name = QString(jack_port[i]);
@@ -192,19 +192,21 @@ void JackMidiStream::onJackIncomingEvent(Port *p) {
     jack_midi_event_t jack_event;
     Event *ms_event;
 
-    for(unsigned int i=0; i < jack_midi_get_event_count(p->in_buffer); i++) {
-        jack_midi_event_get(&jack_event, p->in_buffer, i);
-        ms_event = new Event();
+    if (p->in_buffer) {
+        for(unsigned int i=0; i < jack_midi_get_event_count(p->in_buffer); i++) {
+            jack_midi_event_get(&jack_event, p->in_buffer, i);
+            ms_event = new Event();
 
-        ms_event->deltatime = jack_event.time;
-        ms_event->event = *(jack_event.buffer);
+            ms_event->deltatime = jack_event.time;
+            ms_event->event = *(jack_event.buffer);
 
-        unsigned int j = 1;
-        do {
-            ms_event->params.append(*(jack_event.buffer + j));
-        } while (j++ < jack_event.size);
-        emit send_event(ms_event);
-        emit send_message(QString("JMS Sending Event: %1 %2").arg(ms_event->deltatime).arg(ms_event->event));
+            unsigned int j = 1;
+            do {
+                ms_event->params.append(*(jack_event.buffer + j));
+            } while (j++ < jack_event.size);
+            emit send_event(ms_event);
+            emit send_message(QString("JMS Sending Event: %1 %2").arg(ms_event->deltatime).arg(ms_event->event));
+        }
     }
 }
 

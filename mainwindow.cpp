@@ -55,9 +55,11 @@ void MainWindow::loadPortNames() {
 
 void MainWindow::closeEvent(QCloseEvent *event) {
     Q_UNUSED(event);
-    testmidi->stop();
-    sleep(10);   // Wait for thread to finish
-    delete testmidi;
+    if (!outputs.empty()) {
+        testmidi->stop();
+        sleep(10);   // Wait for thread to finish
+        delete testmidi;
+    }
     close();
 }
 
